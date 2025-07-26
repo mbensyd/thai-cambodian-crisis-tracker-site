@@ -85,6 +85,8 @@ main {
   border: 1px solid #415a77;
   border-radius: 8px;
   min-width: 300px;
+  /* Ensure the map section has height so the absolutely positioned map can render */
+  min-height: 400px;
 }
 
 #map {

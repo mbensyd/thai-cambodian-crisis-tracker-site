@@ -168,6 +168,10 @@ function initMap() {
     };
     notice.addTo(map);
   }
+  // Invalidate size after a short delay to ensure the map properly fills its container
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 200);
 }
 
 // Attach toggle handlers to hide/show panels and resize the map accordingly
