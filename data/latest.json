@@ -2,40 +2,139 @@
   {
     "event_id": "2025-07-25T11:17-abcd1234",
     "first_seen": "2025-07-25T11:17:53+00:00",
+    "last_update": "2025-07-25T11:17:53+00:00",
     "classes": ["military"],
-    "sources": [{"publisher":"Prachatai English"}],
+    "geo": {
+      "lat": 14.394,
+      "lon": 104.683,
+      "place": "Preah Vihear border area",
+      "precision": "site"
+    },
+    "sources": [
+      {
+        "url": "http://prachataienglish.com/node/11486",
+        "publisher": "Prachatai English",
+        "lang": "en",
+        "ts": "2025-07-25T11:17:53+00:00"
+      }
+    ],
+    "original_texts": [
+      {
+        "lang": "en",
+        "text": "UNSC to hold an emergency meeting over Thai-Cambodian border clashes Since the border clashes between Thailand and Cambodia erupted on 24 July, several embassies and international organisations have raised concerns, and Thailand insists Cambodia fired first while Cambodia says it was acting in self‑defence【837594198787549†L72-L90】."
+      }
+    ],
     "translated": {
       "en": {
-        "summary": "Fighting along the Thai–Cambodian frontier prompted Thailand and Cambodia to accuse each other of starting the clash. Prachatai reports that the UN Security Council scheduled an emergency meeting on 25 July to discuss the violence and that multiple embassies warned their citizens to avoid the disputed border.",
-        "context": "Reported by a mainstream independent outlet."
+        "summary": "Fighting along the Thai–Cambodian frontier prompted Thailand and Cambodia to accuse each other of starting the clash.  Prachatai reports that the UN Security Council scheduled an emergency meeting on 25 July to discuss the violence and that multiple embassies warned their citizens to avoid the disputed border【837594198787549†L72-L90】.",
+        "context": "Reported by a mainstream independent outlet." 
+      },
+      "th": {
+        "summary": "(ไม่พร้อมให้บริการ)",
+        "context": "(ไม่พร้อมให้บริการ)"
+      },
+      "km": {
+        "summary": "(មិនអាចផ្តល់សេវា)",
+        "context": "(មិនអាចផ្តល់សេវា)"
       }
     },
-    "rating": {"stars": 3, "rationale": "Single mainstream source; limited corroboration"}
+    "rating": {
+      "stars": 3,
+      "rationale": "Single mainstream source; limited corroboration"
+    },
+    "tags": [],
+    "versions": 1
   },
   {
     "event_id": "2025-07-25T11:00-efgh5678",
     "first_seen": "2025-07-25T11:00:09+00:00",
+    "last_update": "2025-07-25T11:00:09+00:00",
     "classes": ["official statement"],
-    "sources": [{"publisher": "Khmer Times"}],
+    "geo": {
+      "lat": 11.556,
+      "lon": 104.928,
+      "place": "Phnom Penh",
+      "precision": "city"
+    },
+    "sources": [
+      {
+        "url": "https://www.khmertimeskh.com/501725041/response-to-former-thai-prime-minister-thaksin-shinawatras-incendiary-remarks/",
+        "publisher": "Khmer Times",
+        "lang": "en",
+        "ts": "2025-07-25T11:00:09+00:00"
+      }
+    ],
+    "original_texts": [
+      {
+        "lang": "en",
+        "text": "Response to Former Thai Prime Minister Thaksin Shinawatra’s Incendiary Remarks The SK Law Office expresses deep concern and legal objection to former Thai prime minister Thaksin Shinawatra’s social‑media post on 24 July that said the Thai military must ‘teach Phnom Penh a lesson’【592005591674875†L50-L58】."
+      }
+    ],
     "translated": {
       "en": {
-        "summary": "Cambodian legal firm SK Law Office condemned a social-media message by former Thai prime minister Thaksin Shinawatra that rejected mediation efforts and called for Thailand’s military to ‘teach Phnom Penh a lesson’; it warned the remark undermines dialogue.",
-        "context": "Single press release from the Cambodian side."
+        "summary": "Cambodian legal firm SK Law Office condemned a social‑media message by former Thai prime minister Thaksin Shinawatra that rejected mediation efforts and called for Thailand’s military to ‘teach Phnom Penh a lesson’; it warned the remark undermines dialogue【592005591674875†L50-L58】.",
+        "context": "Single press release from the Cambodian side." 
+      },
+      "th": {
+        "summary": "(ไม่พร้อมให้บริการ)",
+        "context": "(ไม่พร้อมให้บริการ)"
+      },
+      "km": {
+        "summary": "(មិនអាចផ្តល់សេវា)",
+        "context": "(មិនអាចផ្តល់សេវា)"
       }
     },
-    "rating": {"stars": 3, "rationale": "Single mainstream source; limited corroboration"}
+    "rating": {
+      "stars": 3,
+      "rationale": "Single mainstream source; limited corroboration"
+    },
+    "tags": [],
+    "versions": 1
   },
   {
     "event_id": "2025-07-25T11:48-ijkl9012",
     "first_seen": "2025-07-25T11:48:30+00:00",
+    "last_update": "2025-07-25T11:48:30+00:00",
     "classes": ["border closure"],
-    "sources": [{"publisher": "r/Cambodia"}],
+    "geo": {
+      "lat": 13.656,
+      "lon": 102.567,
+      "place": "Poipet border crossing",
+      "precision": "city"
+    },
+    "sources": [
+      {
+        "url": "https://www.reddit.com/r/cambodia/comments/1m8x0nd/travelers_guide_cambodias_border_situation_and/",
+        "publisher": "r/Cambodia",
+        "lang": "en",
+        "ts": "2025-07-25T11:48:30+00:00"
+      }
+    ],
+    "original_texts": [
+      {
+        "lang": "en",
+        "text": "Traveler’s Guide: Cambodia’s Border Situation and Travel Updates Given the many questions about security, travel, visas and flights due to the current border conflict, all land border crossings with Thailand are closed, while flights and other borders remain open【776836882465882†L18-L44】."
+      }
+    ],
     "translated": {
       "en": {
-        "summary": "A Reddit travel thread advises that, amid fighting along the Thai–Cambodian frontier, all land borders between the two countries are closed but air links and land crossings with Laos and Vietnam operate normally; travellers are urged to verify information and exercise common sense.",
-        "context": "User-generated advisory; not independently verified."
+        "summary": "A Reddit travel thread advises that, amid fighting along the Thai–Cambodian frontier, all land borders between the two countries are closed but air links and land crossings with Laos and Vietnam operate normally; travellers are urged to verify information and exercise common sense【776836882465882†L18-L44】.",
+        "context": "User‑generated advisory; not independently verified." 
+      },
+      "th": {
+        "summary": "(ไม่พร้อมให้บริการ)",
+        "context": "(ไม่พร้อมให้บริการ)"
+      },
+      "km": {
+        "summary": "(មិនអាចផ្តល់សេវា)",
+        "context": "(មិនអាចផ្តល់សេវា)"
       }
     },
-    "rating": {"stars": 2, "rationale": "Single social media source; unverified"}
+    "rating": {
+      "stars": 2,
+      "rationale": "Single social media source; unverified"
+    },
+    "tags": [],
+    "versions": 1
   }
 ]
