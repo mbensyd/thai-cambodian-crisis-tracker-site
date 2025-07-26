@@ -1,5 +1,11 @@
-// Sample event data – in a real deployment you would fetch latest.json
-const events = [
+// Define a place to store events; will be loaded from the latest.json file.
+let events = [];
+
+// URL of the latest event feed hosted on GitHub. Adjust owner/repo if you fork.
+const DATA_URL = 'https://raw.githubusercontent.com/mbensyd/thai-cambodian-crisis-tracker-site/main/data/latest.json';
+
+// Fallback sample events used if fetch fails.
+const sampleEvents = [
   {
     event_id: "2025-07-25T11:17-abcd1234",
     first_seen: "2025-07-25T11:17:53+00:00",
@@ -9,7 +15,7 @@ const events = [
     ],
     translated: {
       en: {
-        summary: "Fighting along the Thai–Cambodian frontier prompted Thailand and Cambodia to accuse each other of starting the clash.  Prachatai reports that the UN Security Council scheduled an emergency meeting on 25 July to discuss the violence and that multiple embassies warned their citizens to avoid the disputed border.",
+        summary: "Fighting along the Thai–Cambodian frontier prompted Thailand and Cambodia to accuse each other of starting the clash. Prachatai reports that the UN Security Council scheduled an emergency meeting on 25 July to discuss the violence and that multiple embassies warned their citizens to avoid the disputed border.",
         context: "Reported by a mainstream independent outlet."
       }
     },
@@ -55,6 +61,7 @@ const classEmoji = {
 
 function renderEvents() {
   const container = document.getElementById('event-list');
+  container.innerHTML = '';
   events.forEach(ev => {
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -89,14 +96,22 @@ function initTicker() {
 
 function initMap() {
   const map = L.map('map').setView([14.6, 103.0], 5); // centre on Thailand/Cambodia
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+  // Use a dark-themed tile layer reminiscent of a Defcon-style map
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap contributors, © CartoDB'
   }).addTo(map);
   let hasPins = false;
   events.forEach(ev => {
-    if (ev.geo && ev.geo.lat && ev.geo.lon) {
+    if (ev.geo && ev.geo.lat != null && ev.geo.lon != null) {
       hasPins = true;
-      const marker = L.marker([ev.geo.lat, ev.geo.lon]).addTo(map);
+      // Draw a glowing circle marker instead of the default icon
+      const marker = L.circleMarker([ev.geo.lat, ev.geo.lon], {
+        radius: 6,
+        color: '#f5cb5c',
+        weight: 2,
+        fillColor: '#f5cb5c',
+        fillOpacity: 0.8
+      }).addTo(map);
       marker.bindPopup(`<strong>${ev.translated.en.summary}</strong><br>${ev.classes.join(', ')}`);
     }
   });
@@ -115,7 +130,51 @@ function initMap() {
   }
 }
 
-// Initialise everything
-renderEvents();
-initTicker();
-initMap();
+// Compute and render a simple summary of events
+function renderSummary() {
+  const container = document.getElementById('summary-section');
+  if (!container) return;
+  const total = events.length;
+  const counts = {};
+  let ratingSum = 0;
+  events.forEach(ev => {
+    ratingSum += (ev.rating?.stars || 0);
+    ev.classes.forEach(cls => {
+      counts[cls] = (counts[cls] || 0) + 1;
+    });
+  });
+  const avgRating = total ? (ratingSum / total).toFixed(1) : 'N/A';
+  let html = '';
+  html += `<p><strong>Total events:</strong> ${total}</p>`;
+  html += '<p><strong>Events by type:</strong></p>';
+  html += '<ul>';
+  Object.keys(counts).forEach(cls => {
+    html += `<li>${cls}: ${counts[cls]}</li>`;
+  });
+  html += '</ul>';
+  html += `<p><strong>Average reliability:</strong> ${avgRating} / 5</p>`;
+  container.innerHTML = '<h2>Summary</h2>' + html;
+}
+
+// Load events from the remote JSON file and initialise the UI
+async function loadData() {
+  try {
+    const response = await fetch(DATA_URL);
+    if (response.ok) {
+      events = await response.json();
+    } else {
+      console.warn('Failed to fetch remote events; using sample data');
+      events = sampleEvents;
+    }
+  } catch (err) {
+    console.warn('Error loading events:', err);
+    events = sampleEvents;
+  }
+  renderEvents();
+  initTicker();
+  initMap();
+  renderSummary();
+}
+
+// Initialise everything by loading data
+loadData();
