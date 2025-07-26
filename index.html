@@ -5,17 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thai–Cambodian Crisis Tracker</title>
   <link rel="stylesheet" href="style.css">
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+tdgvBmKXCSgjkNHEa9vFdlqK65fQJBL2j5K4Mmi0="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-n3J/ep6pSA2MYKNSndWgwGmFEMs8bNk/oL/JrKyzN20="
-    crossorigin=""
-  ></script>
+  <!-- Load Leaflet locally to avoid CDN integrity issues -->
+  <link rel="stylesheet" href="leaflet.css" />
+  <script src="leaflet.js"></script>
 </head>
 <body>
   <header>
