@@ -1,5 +1,7 @@
 // Define a place to store events; will be loaded from the latest.json file.
 let events = [];
+// Global map reference so we can resize it when panels are toggled
+let map = null;
 
 // URL of the latest event feed hosted on GitHub. Adjust owner/repo if you fork.
 const DATA_URL = 'https://raw.githubusercontent.com/mbensyd/thai-cambodian-crisis-tracker-site/main/data/latest.json';
@@ -80,6 +82,44 @@ function renderEvents() {
   });
 }
 
+// Render an intelligence summary panel based on the aggregated events.
+function renderIntelligence() {
+  const intelContainer = document.getElementById('intel-content');
+  if (!intelContainer) return;
+  const total = events.length;
+  if (total === 0) {
+    intelContainer.innerHTML = '<p>No events loaded.</p>';
+    return;
+  }
+  // Count events by class and reliability stars
+  const classCounts = {};
+  const starCounts = {1:0,2:0,3:0,4:0,5:0};
+  const publishers = new Set();
+  events.forEach(ev => {
+    ev.classes.forEach(cls => {
+      classCounts[cls] = (classCounts[cls] || 0) + 1;
+    });
+    const stars = ev.rating?.stars || 0;
+    if (starCounts.hasOwnProperty(stars)) starCounts[stars]++;
+    ev.sources.forEach(src => publishers.add(src.publisher));
+  });
+  // Build HTML summary
+  let html = '';
+  html += `<p><strong>Total events:</strong> ${total}</p>`;
+  html += '<p><strong>Events by type:</strong></p><ul>';
+  Object.keys(classCounts).forEach(cls => {
+    html += `<li>${cls}: ${classCounts[cls]}</li>`;
+  });
+  html += '</ul>';
+  html += '<p><strong>Reliability distribution:</strong></p><ul>';
+  Object.keys(starCounts).forEach(star => {
+    html += `<li>${star}★: ${starCounts[star]}</li>`;
+  });
+  html += '</ul>';
+  html += `<p><strong>Sources represented:</strong> ${Array.from(publishers).join(', ')}</p>`;
+  intelContainer.innerHTML = html;
+}
+
 function initTicker() {
   const ticker = document.getElementById('ticker');
   let idx = 0;
@@ -95,7 +135,7 @@ function initTicker() {
 }
 
 function initMap() {
-  const map = L.map('map').setView([14.6, 103.0], 5); // centre on Thailand/Cambodia
+  map = L.map('map').setView([14.6, 103.0], 5); // centre on Thailand/Cambodia
   // Use a dark-themed tile layer reminiscent of a Defcon-style map
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap contributors, © CartoDB'
@@ -127,6 +167,27 @@ function initMap() {
       return div;
     };
     notice.addTo(map);
+  }
+}
+
+// Attach toggle handlers to hide/show panels and resize the map accordingly
+function initToggles() {
+  const eventToggle = document.getElementById('toggle-events');
+  const intelToggle = document.getElementById('toggle-intel');
+  const eventPanel = document.getElementById('event-section');
+  const intelPanel = document.getElementById('intel-section');
+  if (eventToggle) {
+    eventToggle.addEventListener('click', () => {
+      eventPanel.classList.toggle('collapsed');
+      // Delay resize to allow CSS to apply
+      setTimeout(() => { if (map) map.invalidateSize(); }, 350);
+    });
+  }
+  if (intelToggle) {
+    intelToggle.addEventListener('click', () => {
+      intelPanel.classList.toggle('collapsed');
+      setTimeout(() => { if (map) map.invalidateSize(); }, 350);
+    });
   }
 }
 
@@ -173,7 +234,8 @@ async function loadData() {
   renderEvents();
   initTicker();
   initMap();
-  renderSummary();
+  renderIntelligence();
+  initToggles();
 }
 
 // Initialise everything by loading data

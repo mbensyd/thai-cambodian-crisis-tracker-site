@@ -23,16 +23,25 @@
     <div id="ticker"></div>
   </header>
   <main>
-    <section id="event-list-section">
-      <h2>Events</h2>
+    <!-- Events panel on the left -->
+    <section id="event-section" class="panel">
+      <div class="panel-header">
+        <h2>Events</h2>
+        <button id="toggle-events" class="toggle-btn" title="Collapse/Expand events panel">⇳</button>
+      </div>
       <div id="event-list"><!-- Events will be injected here --></div>
     </section>
+    <!-- Map occupies the centre and grows to fill available space -->
     <section id="map-section">
-      <h2>Event Map</h2>
       <div id="map"></div>
     </section>
-    <section id="summary-section">
-      <!-- Summary content will be injected dynamically -->
+    <!-- Intelligence summary panel on the right -->
+    <section id="intel-section" class="panel">
+      <div class="panel-header">
+        <h2>Intelligence</h2>
+        <button id="toggle-intel" class="toggle-btn" title="Collapse/Expand intelligence panel">⇳</button>
+      </div>
+      <div id="intel-content"><!-- Intelligence summary will be injected here --></div>
     </section>
   </main>
   <footer>
