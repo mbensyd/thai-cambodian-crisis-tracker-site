@@ -51,14 +51,16 @@ const sampleEvents = [
   }
 ];
 
-// Mapping of classes to emoji
+// Mapping of classes to icons or emoji. Use simple Unicode characters to
+// reduce encoding issues when served through various CDNs. These icons
+// represent the type of event and appear in the ticker and event list.
 const classEmoji = {
-  military: '⚔️',
-  'border closure': '🛂',
-  'official statement': '📃',
-  civil: '🧑‍🤝‍🧑',
-  'info-ops': '🕵️',
-  political: '🗳️'
+  military: '⚔️',               // swords for clashes
+  'border closure': '🛂',       // passport control for border closures
+  'official statement': '📃',    // document for official statements
+  civil: '👥',                  // group of people for civil/protest events
+  'info-ops': '🕵️',            // spy emoji for information operations
+  political: '🗳️'             // ballot box for political/diplomatic events
 };
 
 function renderEvents() {
