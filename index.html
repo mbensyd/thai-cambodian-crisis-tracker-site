@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thai–Cambodian Crisis Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+tdgvBmKXCSgjkNHEa9vFdlqK65fQJBL2j5K4Mmi0="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-n3J/ep6pSA2MYKNSndWgwGmFEMs8bNk/oL/JrKyzN20="
+    crossorigin=""
+  ></script>
+</head>
+<body>
+  <header>
+    <h1>Thai–Cambodian Crisis Tracker</h1>
+    <div id="ticker"></div>
+  </header>
+  <main>
+    <section id="event-list">
+      <!-- Events will be injected here -->
+    </section>
+    <section id="map-section">
+      <h2>Event Map</h2>
+      <div id="map"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Crisis Tracker Prototype</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
