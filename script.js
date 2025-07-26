@@ -139,8 +139,11 @@ function initTicker() {
 function initMap() {
   map = L.map('map').setView([14.6, 103.0], 5); // centre on Thailand/Cambodia
   // Use a dark-themed tile layer reminiscent of a Defcon-style map
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© OpenStreetMap contributors, © CartoDB'
+  // Use OpenStreetMap tiles because some CDNs (e.g. Carto) are blocked in the
+  // execution environment. Although we lose the dark "Defcon" aesthetic,
+  // these tiles reliably load and provide geographic context for markers.
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
   }).addTo(map);
   let hasPins = false;
   events.forEach(ev => {
